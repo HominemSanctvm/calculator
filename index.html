@@ -6,27 +6,28 @@
 	</head>
 	<body>
 		<div id='div-calculator'>
-			<textarea id='outResults' readonly maxlength='15' dir='rtl'></textarea>	
+			<textarea id='inOperation'class='display' rows='1' dir='rtl' readonly></textarea>
+			<textarea id='outResults' class='display' rows='1' dir='rtl' readonly>0</textarea>
 			<div id='div-calculator-buttons'>
-				<input type='button'class='btnOperators' value='AC'>
-				<input type='button'class='btnOperators' value='C'>
-				<input type='button'class='btnOperators' value='%'>
-				<input type='button'class='btnOperators' value='/'>
-				<input type='button'class='btnNumbers' value='7'>
-				<input type='button'class='btnNumbers' value='8'>
-				<input type='button'class='btnNumbers' value='9'>
-				<input type='button'class='btnOperators' value='X'>
-				<input type='button'class='btnNumbers' value='4'>
-				<input type='button'class='btnNumbers' value='5'>
-				<input type='button'class='btnNumbers' value='6'>
-				<input type='button'class='btnOperators' value='-'>
-				<input type='button'class='btnNumbers' value='1'>
-				<input type='button'class='btnNumbers' value='2'>
-				<input type='button'class='btnNumbers' value='3'>
-				<input type='button'class='btnOperators' value='+'>
-				<input type='button'class='btnNumbers' value='0'>
-				<input type='button'class='btnOperators' value='.'>
-				<input type='button'class='btnOperators equalOperator' value='='>
+				<input id='btnAC' type='button' class='btnOperators calculatorButtons' value='AC'>
+				<input type='button'class='btnOperators calculatorButtons' value='C'>
+				<input type='button'class='btnOperators calculatorButtons' value='%'>
+				<input type='button'class='btnOperators calculatorButtons' value='/'>
+				<input type='button'class='btnNumbers calculatorButtons' value='7'>
+				<input type='button'class='btnNumbers calculatorButtons' value='8'>
+				<input type='button'class='btnNumbers calculatorButtons' value='9'>
+				<input type='button'class='btnOperators calculatorButtons' value='X'>
+				<input type='button'class='btnNumbers calculatorButtons' value='4'>
+				<input type='button'class='btnNumbers calculatorButtons' value='5'>
+				<input type='button'class='btnNumbers calculatorButtons' value='6'>
+				<input type='button'class='btnOperators calculatorButtons' value='-'>
+				<input type='button'class='btnNumbers calculatorButtons' value='1'>
+				<input type='button'class='btnNumbers calculatorButtons' value='2'>
+				<input type='button'class='btnNumbers calculatorButtons' value='3'>
+				<input type='button'class='btnOperators calculatorButtons' value='+'>
+				<input type='button'class='btnNumbers calculatorButtons' value='0'>
+				<input type='button'class='btnOperators calculatorButtons' value='.'>
+				<input type='button'id='equalOperator' class='calculatorButtons'value='='>
 			</div>
 		</div>
 		<script src='script.js'></script>

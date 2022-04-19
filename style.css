@@ -7,12 +7,14 @@
 	border: 1px solid black;
 }
 
-#outResults {
+.display {
 	box-sizing: border-box;
-	font-size: 24px;
+	font-size: 20px;
 	width: 100%;
-	height: 64px;
+	height: 32px;
 	resize: none;
+	overflow: hidden;
+	border: 0;
 }
 
 #div-calculator-buttons {
@@ -20,13 +22,10 @@
 	grid-template-columns: repeat(4, 1fr);
 }
 
-.equalOperator {
+#equalOperator {
 	grid-column: 3/5;
 }
 
-.btnNumbers {
-	font-size: 24px;
-}
-.btnOperators {
+.calculatorButtons {
 	font-size: 24px;
 }
