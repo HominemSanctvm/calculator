@@ -1,20 +1,24 @@
-#div-calculator {
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+#calculator-form {
+	font-family: 'Noto Sans', sans-serif;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	background-color: gray;
+	background-color: #2d2d2d;
 	width: 256px;
 	border: 1px solid black;
 }
 
 .display {
+	background-color: gray;
 	box-sizing: border-box;
-	font-size: 20px;
-	width: 100%;
+	font-size: 18px;
+	width: 80%;
 	height: 32px;
-	resize: none;
 	overflow: hidden;
 	border: 0;
+	margin: 0 auto;
 }
 
 #div-calculator-buttons {
@@ -26,6 +30,6 @@
 	grid-column: 3/5;
 }
 
-.calculatorButtons {
-	font-size: 24px;
+.btnStyle {
+	font-size: 20px;
 }

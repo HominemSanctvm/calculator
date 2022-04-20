@@ -1,33 +1,34 @@
 <!doctype HTML>
-<html>
+<html lang='pt-br'>
 	<head>
 		<title>Simple JS calculator</title>
 		<link rel='stylesheet' href='style.css'>
+		<meta charset='utf-8'>
 	</head>
 	<body>
-		<div id='div-calculator'>
-			<textarea id='inOperation'class='display' rows='1' dir='rtl' readonly></textarea>
-			<textarea id='outResults' class='display' rows='1' dir='rtl' readonly>0</textarea>
+		<div id='calculator-form'>
+			<output id='inDisplay' class='display' dir='rtl'></output>
+			<output id='outDisplay' class='display'  dir='rtl'></output>
 			<div id='div-calculator-buttons'>
-				<input id='btnAC' type='button' class='btnOperators calculatorButtons' value='AC'>
-				<input type='button'class='btnOperators calculatorButtons' value='C'>
-				<input type='button'class='btnOperators calculatorButtons' value='%'>
-				<input type='button'class='btnOperators calculatorButtons' value='/'>
-				<input type='button'class='btnNumbers calculatorButtons' value='7'>
-				<input type='button'class='btnNumbers calculatorButtons' value='8'>
-				<input type='button'class='btnNumbers calculatorButtons' value='9'>
-				<input type='button'class='btnOperators calculatorButtons' value='X'>
-				<input type='button'class='btnNumbers calculatorButtons' value='4'>
-				<input type='button'class='btnNumbers calculatorButtons' value='5'>
-				<input type='button'class='btnNumbers calculatorButtons' value='6'>
-				<input type='button'class='btnOperators calculatorButtons' value='-'>
-				<input type='button'class='btnNumbers calculatorButtons' value='1'>
-				<input type='button'class='btnNumbers calculatorButtons' value='2'>
-				<input type='button'class='btnNumbers calculatorButtons' value='3'>
-				<input type='button'class='btnOperators calculatorButtons' value='+'>
-				<input type='button'class='btnNumbers calculatorButtons' value='0'>
-				<input type='button'class='btnOperators calculatorButtons' value='.'>
-				<input type='button'id='equalOperator' class='calculatorButtons'value='='>
+				<input id='btnAllClear' type='button' class='btnStyle' value='AC'>
+				<input type='button' class='btnStyle' value='C'>
+				<input type='button' class='btnCalc btnStyle' value='%'>
+				<input type='button' class='btnCalc btnStyle' value='/'>
+				<input type='button' class='btnCalc btnStyle' value='7'>
+				<input type='button' class='btnCalc btnStyle' value='8'>
+				<input type='button' class='btnCalc btnStyle' value='9'>
+				<input type='button' class='btnCalc btnStyle' value='*'>
+				<input type='button' class='btnCalc btnStyle' value='4'>
+				<input type='button' class='btnCalc btnStyle' value='5'>
+				<input type='button' class='btnCalc btnStyle' value='6'>
+				<input type='button' class='btnCalc btnStyle' value='-'>
+				<input type='button' class='btnCalc btnStyle' value='1'>
+				<input type='button' class='btnCalc btnStyle' value='2'>
+				<input type='button' class='btnCalc btnStyle' value='3'>
+				<input type='button' class='btnCalc btnStyle' value='+'>
+				<input type='button' class='btnCalc btnStyle' value='0'>
+				<input type='button' class='btnCalc btnStyle' value='.'>
+				<input type='button' id='equalOperator' class='btnStyle' value='='>
 			</div>
 		</div>
 		<script src='script.js'></script>
