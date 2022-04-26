@@ -26,10 +26,14 @@
 	grid-template-columns: repeat(4, 1fr);
 }
 
-#equalOperator {
+#btnEqual {
 	grid-column: 3/5;
 }
 
 .btnStyle {
 	font-size: 20px;
+}
+
+.disabled {
+	display: none;
 }

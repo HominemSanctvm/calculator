@@ -1,8 +1,11 @@
-const btnCalc = document.querySelectorAll('.btnCalc');
+const outDisplay = document.getElementById('outDisplay');
+const btnNumbers = document.querySelectorAll('.btnNumbers');
+const btnOperators = document.querySelectorAll('.btnOperators');
 const btnAllClear = document.getElementById('btnAllClear'); 
-const equalOperator = document.getElementById('equalOperator');
-let firstNumber = 0;
-let secondNumber = 0;
+const btnEqual = document.getElementById('btnEqual');
+let displayNumber = '';
+let userInputNumbers = [];
+let operatorChoice = '';
 
 function calcSum(a,b) {
 	return a + b;
@@ -20,50 +23,36 @@ function calcDivide(a, b) {
 	return a / b;
 }
 
-function calcAllClear() {
-	inDisplay.value = '';
-	outDisplay.value = '';
-	firstNumber = 0;
-	secondNumber = 0;
-}
-
-function disassembly(displayRaw) {
-	const indexOfOperator = displayRaw.search(/\D/);
-	return indexOfOperator;
-}
-
 function operate() {
-	const inDisplay = document.getElementById('inDisplay');
+	userInputNumbers.push(Number(outDisplay.value));
+	for (let i = 0; i < userInputNumbers.length; i++) {
+		alert(userInputNumbers[i]);}
+//	switch (operatorChoice) {
+	//	case '+':
+	//	case '-':
+	//	case '*':
+	//	case '/':
+	//}			
+}
+
+function display(something) {
 	const outDisplay = document.getElementById('outDisplay');
-	const userInput = inDisplay.value;
-	
-	const indexOfOperator = disassembly(userInput);
-	const operator = userInput.charAt(indexOfOperator);
-
-	firstNumber = parseInt(userInput.slice(0, indexOfOperator));
-	secondNumber = parseInt(userInput.slice(indexOfOperator+1));
-	
-	switch (operator) {
-		case '+':
-			outDisplay.value = calcSum(firstNumber, secondNumber);
-			break;
-		case '-':
-			outDisplay.value = calcMinus(firstNumber, secondNumber);
-			break;
-		case '*':
-			outDisplay.value = calcMultiply(firstNumber, secondNumber);
-			break;
-		case '/':
-			outDisplay.value = calcDivide(firstNumber, secondNumber);
-			break;
-	}
+	outDisplay.value = displayNumber;
 }
 
-for (const button of btnCalc) {
+btnNumbers.forEach((button) => {
 	button.addEventListener('click', function() {
-		inDisplay.value += button.value;
+		displayNumber += button.value;
+		display(displayNumber);
 	});
-}
+})
 
-btnAllClear.addEventListener('click', calcAllClear);
-equalOperator.addEventListener('click', operate);
+btnOperators.forEach((operator) => {
+	operator.addEventListener('click', function() {
+		operatorChoice = operator.value;
+		userInputNumbers.push(Number(outDisplay.value));
+		displayNumber = '';
+	});
+})
+
+btnEqual.addEventListener('click', operate);
