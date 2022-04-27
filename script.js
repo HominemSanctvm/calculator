@@ -63,11 +63,13 @@ function sound(src) {
 
 btnNumbers.forEach((button) => {
 	button.addEventListener('click', function() {
-		if (finishedCalc)
+		if (finishedCalc) {
 			displayCalculator = '';
+			finishedCalc = false;
+		}
 
 		displayCalculator += button.value;
-		userInputNumbers[index] += Number(displayCalculator);
+		userInputNumbers[index] += Number(button.value);
 		outDisplayCalculator.textContent = displayCalculator;
 	});
 })
@@ -75,8 +77,10 @@ btnNumbers.forEach((button) => {
 btnOperators.forEach((operator) => {
 	operator.addEventListener('click', function() {
 
-		if (finishedCalc)
+		if (finishedCalc) {
 			userInputNumbers[0] = Number(displayCalculator);
+			finishedCalc = false;
+		}
 
 		userOperatorChoice = operator.value;
 		index = 1;
