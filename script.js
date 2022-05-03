@@ -1,5 +1,6 @@
 const btnNumbers = document.querySelectorAll('.btnNumbers');
 const btnOperators = document.querySelectorAll('.btnOperators');
+const btnClear = document.getElementById('btnClear');
 const btnAllClear = document.getElementById('btnAllClear'); 
 const btnEqual = document.getElementById('btnEqual');
 const btnStyle = document.querySelectorAll('.btnStyle');
@@ -73,7 +74,14 @@ function operate() {
 }
 
 function clear() {
-	
+	let correctedNumber = displayCalculator.slice(0, -1);
+	displayCalculator = correctedNumber;
+	userInputNumbers[index] = correctedNumber;
+	outDisplayCalculator.textContent = displayCalculator;
+
+	if (outDisplayCalculator.textContent == '')
+		outDisplayCalculator.textContent = '0';
+
 }
 
 function allClear() {
@@ -109,6 +117,8 @@ btnOperators.forEach((operator) => {
 		passOperator(operator);
 	});
 })
+
+btnClear.addEventListener('click', clear);
 
 btnAllClear.addEventListener('click', allClear);
 

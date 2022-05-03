@@ -1,14 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-
-body {
-	font-family: 'VTE 323', monospace;
-}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=VT323&display=swap');
 
 :root {
 	--body-color: #BDBDBD;
 	--display-color: #32A956;
 	--buttons-color: #9575CD;
 	--buttons-font-color: #F5F5F5;
+	--font-display: 'VT323', monospace;
+	--font-buttons: 'Noto Sans', sans-serif;
 }
 
 #calculator-form {
@@ -35,11 +33,12 @@ body {
 }
 
 #outDisplayCalculator {
+	font-family: var(--font-display);
 	width: 100%;
 	height: 100%;
 	background-color: var(--display-color);
 	box-sizing: border-box;
-	font-size: 24px;
+	font-size: 36px;
 	overflow: hidden;
 	border: none;
 	border-radius: 5px;
@@ -62,12 +61,12 @@ body {
 }
 
 .btnStyle {
+	font-family: var(--font-buttons);
 	border: none;
 	border-radius: 50px;
-	font-size: 20px;
+	font-size: 18px;
 	background-color: var(--buttons-color);
 	color: var(--buttons-font-color);
-	box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .btnStyle:active {
