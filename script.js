@@ -52,20 +52,22 @@ function passOperator(operator) {
 }
 
 function operate() {
+	let result = 0;
 	switch (userOperatorChoice) {
 		case '+':
-			displayCalculator = userInputNumbers.reduce(calcSum);
+			result = userInputNumbers.reduce(calcSum);
 			break;
 		case '-':
-			displayCalculator = userInputNumbers.reduce(calcMinus);
+			result = userInputNumbers.reduce(calcMinus);
 			break;
 		case '*':
-			displayCalculator = userInputNumbers.reduce(calcMultiply);
+			result = userInputNumbers.reduce(calcMultiply);
 			break;
 		case '/':
-			displayCalculator = userInputNumbers.reduce(calcDivide);
+			result = userInputNumbers.reduce(calcDivide);
 			break;
 	}			
+	displayCalculator = result.toString();
 	outDisplayCalculator.textContent = displayCalculator;
 	userInputNumbers[0] = '0';
 	userInputNumbers[1] = '0';
