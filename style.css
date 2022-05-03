@@ -4,29 +4,57 @@ body {
 	font-family: 'VTE 323', monospace;
 }
 
+:root {
+	--body-color: #BDBDBD;
+	--display-color: #32A956;
+	--buttons-color: #9575CD;
+	--buttons-font-color: #F5F5F5;
+}
+
 #calculator-form {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	background-color: #2d2d2d;
-	width: 256px;
-	border: 1px solid black;
+	background-color: var(--body-color);
+	width: 192px;
+	height: 212px;
+	border: none;
+	border-radius: 10px;
+	padding: 10px;
 }
 
-.display {
-	background-color: #32A956;
-	box-sizing: border-box;
-	font-size: 18px;
+#divDisplay {
+	margin: auto;
 	width: 100%;
-	height: 32px;
+	height: 48px;
+	background-color: #9E9E9E;
+	text-align: center;
+	padding: 5px;
+	box-sizing: border-box;
+	border-radius: 5px;
+}
+
+#outDisplayCalculator {
+	width: 100%;
+	height: 100%;
+	background-color: var(--display-color);
+	box-sizing: border-box;
+	font-size: 24px;
 	overflow: hidden;
-	border: 0;
-	margin: 0 auto;
+	border: none;
+	border-radius: 5px;
+	resize: none;
+}
+
+#outDisplayCalculator:focus {
+	outline: none;
 }
 
 #div-calculator-buttons {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	margin: 0 auto;
+	grid-gap: 5px;
 }
 
 #btnEqual {
@@ -34,7 +62,19 @@ body {
 }
 
 .btnStyle {
+	border: none;
+	border-radius: 50px;
 	font-size: 20px;
+	background-color: var(--buttons-color);
+	color: var(--buttons-font-color);
+	box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.btnStyle:active {
+  transform: translateY(1px);
+}
+.btnStyle:focus {
+	outline: none;
 }
 
 .disabled {
