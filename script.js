@@ -4,10 +4,9 @@ const btnClear = document.getElementById('btnClear');
 const btnAllClear = document.getElementById('btnAllClear'); 
 const btnEqual = document.getElementById('btnEqual');
 const btnStyle = document.querySelectorAll('.btnStyle');
-let displayCalculator = '0';
-let userInputNumbers = ['0','0'];
+let inputNumbers = ['0','0'];
 let index = 0;
-let userOperatorChoice = '';
+let operatorChoice = '';
 let finishedCalc = false;
 
 function display(result) {
@@ -16,90 +15,89 @@ function display(result) {
 }
 
 function calcSum(a,b) {
-	return a + b;
+	return parseFloat(a) + parseFloat(b);
 }
 
 function calcMinus(a,b) {
-	return a - b;
+	return parseFloat(a) - parseFloat(b);
 }
 
 function calcMultiply(a, b) {
-	return a * b;
+	return parseFloat(a) * parseFloat(b);
 }
 
 function calcDivide(a, b) {
-	return a / b;
+	return parseFloat(a) / parseFloat(b);
 }
 
 function passNumber(button) {
 	if (finishedCalc) {
-		displayCalculator = '0';
+		inputNumbers[0] = '0';
 		finishedCalc = false;
 	}
 
-	if (displayCalculator.charAt(0) === '0')
- 		displayCalculator = displayCalculator.substring(1);
+	const number = button.value;
+	inputNumbers[index] += number;
+	const result = parseFloat(inputNumbers[index]);
 
-	displayCalculator += button.value;
-	display(displayCalculator);
+	display(result);
 
 }
 
 function passOperator(operator) {
-	if (finishedCalc) {
-		userInputNumbers[0] = displayCalculator;
+	if (finishedCalc)
 		finishedCalc = false;
-	}
 
-	userOperatorChoice = operator.value;
-	userInputNumbers[index] = parseFloat(displayCalculator);
+	operatorChoice = operator.value;
 	index = 1;
-	displayCalculator = '0';
 
 }
 
 function operate() {
-	userInputNumbers[index] = parseFloat(displayCalculator);
+	if (finishedCalc)
+		return;
 
-	switch (userOperatorChoice) {
+	let result = 0;
+
+	switch (operatorChoice) {
 		case '+':
-			displayCalculator = userInputNumbers.reduce(calcSum);
+			result = inputNumbers.reduce(calcSum);
 			break;
 		case '-':
-			displayCalculator = userInputNumbers.reduce(calcMinus);
+			result = inputNumbers.reduce(calcMinus);
 			break;
 		case '*':
-			displayCalculator = userInputNumbers.reduce(calcMultiply);
+			result = inputNumbers.reduce(calcMultiply);
 			break;
 		case '/':
-			displayCalculator = userInputNumbers.reduce(calcDivide);
+			result = inputNumbers.reduce(calcDivide);
 			break;
 	}			
-	displayCalculator = displayCalculator.toString();
-	display(displayCalculator);
-	userInputNumbers[0] = '0';
-	userInputNumbers[1] = '0';
+
+	display(result);
+	inputNumbers[0] = result.toString();
+	inputNumbers[1] = '0';
 	index = 0;
 	finishedCalc = true;
 }
 
 function clear() {
-	displayCalculator = displayCalculator.slice(0, -1);;
-	userInputNumbers[index] = parseFloat(displayCalculator);
+	inputNumbers[index] = inputNumbers[index].slice(0, -1);;
+	if (inputNumbers[index] == '' || isNaN(inputNumbers[index]))
+		inputNumbers[index] = '0';
 
-	if (displayCalculator == '')
-		displayCalculator = '0';
+	let result = parseFloat(inputNumbers[index]);
 
-	display(displayCalculator);
+	display(result);
 }
 
 function allClear() {
-	displayCalculator = '0';
-	userInputNumbers[0] = '0';
-	userInputNumbers[1] = '0';
+	inputNumbers[0] = '0';
+	inputNumbers[1] = '0';
+	operatorChoice = '';
 	index = 0;
 	finishedCalc = false;
-	display(displayCalculator);
+	display('0');
 }
 
 function sound(src) {
