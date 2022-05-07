@@ -29,7 +29,7 @@ body {
 
 #divDisplay {
 	margin: auto;
-	width: 100%;
+	width: 80%;
 	height: 72px;
 	background-color: #9E9E9E;
 	text-align: center;
@@ -59,7 +59,7 @@ body {
 #div-calculator-buttons {
 	display: grid;
 	grid-template-columns: repeat(4, minmax(0, 1fr));
-	margin: 0 auto;
+	margin: 10px auto;
 	grid-gap: 5px;
 }
 
