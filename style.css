@@ -7,11 +7,12 @@
 	--buttons-font-color: #F5F5F5;
 	--font-display: 'VT323', monospace;
 	--font-buttons: 'Noto Sans', sans-serif;
-	--background-color: linear-gradient(to right, #4dc9e6, #210cae);
+/*	--background-color: linear-gradient(to right, #4dc9e6, #210cae); /*/
+	--background-color: #008080;
 }
 
 body {
-	background-image: var(--background-color);
+	background-color: var(--background-color);
 }
 
 #calculator-form {

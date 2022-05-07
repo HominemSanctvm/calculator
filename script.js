@@ -44,6 +44,9 @@ function calcPercentage() {
 }
 
 function passNumber(button) {
+	if (numberOnDisplay.length == 9) {
+		return;
+	}
 	const number = button.value;
 	numberOnDisplay += number;
 	inputNumbers[index] = parseFloat(numberOnDisplay);
@@ -56,7 +59,7 @@ function passOperator(operator) {
 	
 	}
 	operatorChoice = operator.value;
-	numberOnDisplay = '';
+	numberOnDisplay = '0';
 	
 	index = 1;
 }
@@ -86,7 +89,7 @@ function operate() {
 
 	calcDisplay(numberOnDisplay);
 
-	numberOnDisplay = '';
+	numberOnDisplay = '0';
 	inputNumbers[0] = product; 
 	inputNumbers[1] = 0;
 	index = 0;
@@ -113,13 +116,9 @@ function allClear() {
 	calcDisplay(numberOnDisplay);
 }
 
-function sound(src) {
-  this.sound = document.createElement("audio");
-  this.sound.src = src;
-  document.body.appendChild(this.sound);
-  this.play = function(){
-    this.sound.play();
-  }
+function playBeep() {
+	const beep = document.getElementById('beep');
+	beep.play();
 }
 
 btnNumbers.forEach((button) => {
@@ -142,9 +141,8 @@ btnAllClear.addEventListener('click', allClear);
 
 btnStyle.forEach((button) => {
 	button.addEventListener('click', function() {
-		const beep = new sound('short-beep.wav');
-		beep.play();
+		playBeep();	
 	});
 })
-calcDisplay('0');
+calcDisplay(numberOnDisplay);
 btnEqual.addEventListener('click', operate);
