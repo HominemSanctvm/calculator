@@ -4,100 +4,108 @@ const btnClear = document.getElementById('btnClear');
 const btnAllClear = document.getElementById('btnAllClear'); 
 const btnEqual = document.getElementById('btnEqual');
 const btnStyle = document.querySelectorAll('.btnStyle');
-let inputNumbers = ['0','0'];
+let numberOnDisplay = '0';
+let inputNumbers = [0,0];
+let product = 0; // 'result'
 let index = 0;
 let operatorChoice = '';
 let finishedCalc = false;
 
-function display(result) {
+function calcDisplay(result) {
 	const outDisplayCalculator = document.getElementById('outDisplayCalculator');
-	outDisplayCalculator.textContent = result;
+	const regex = new RegExp("^0+(?!$)",'g');
+	const display = result.replace(regex, '');
+//	let display = +result;
+//	display = display.toString();
+
+	outDisplayCalculator.textContent = display;
 }
 
 function calcSum(a,b) {
-	return parseFloat(a) + parseFloat(b);
+	return a + b;
 }
 
 function calcMinus(a,b) {
-	return parseFloat(a) - parseFloat(b);
+	return a - b;
 }
 
 function calcMultiply(a, b) {
-	return parseFloat(a) * parseFloat(b);
+	return a * b;
 }
 
 function calcDivide(a, b) {
-	return parseFloat(a) / parseFloat(b);
+	return a / b;
 }
 
 function passNumber(button) {
 	if (finishedCalc) {
-		inputNumbers[0] = '0';
 		finishedCalc = false;
 	}
 
 	const number = button.value;
-	inputNumbers[index] += number;
-	const result = parseFloat(inputNumbers[index]);
-
-	display(result);
-
+	numberOnDisplay += number;
+	inputNumbers[index] = parseFloat(numberOnDisplay);
+	calcDisplay(numberOnDisplay);
 }
 
 function passOperator(operator) {
-	if (finishedCalc)
-		finishedCalc = false;
-
-	operatorChoice = operator.value;
-	index = 1;
-
+		operatorChoice = operator.value;
+		numberOnDisplay = '';
+		index = 1;
 }
 
 function operate() {
-	if (finishedCalc)
-		return;
-
-	let result = 0;
+	const a = inputNumbers[0];
+	const b = inputNumbers[1];
 
 	switch (operatorChoice) {
 		case '+':
-			result = inputNumbers.reduce(calcSum);
+			product = calcSum(a, b);
 			break;
 		case '-':
-			result = inputNumbers.reduce(calcMinus);
+			product = calcMinus(a,b);
 			break;
 		case '*':
-			result = inputNumbers.reduce(calcMultiply);
+			product = calcMultiply(a,b);
 			break;
 		case '/':
-			result = inputNumbers.reduce(calcDivide);
+			product = calcDivide(a,b);
 			break;
+		default:
+			product = a;
 	}			
 
-	display(result);
-	inputNumbers[0] = result.toString();
-	inputNumbers[1] = '0';
+	numberOnDisplay = product.toString();
+
+	calcDisplay(numberOnDisplay);
+
+	numberOnDisplay = '';
+	inputNumbers[0] = 0; 
+	inputNumbers[1] = 0;
 	index = 0;
 	finishedCalc = true;
 }
 
 function clear() {
-	inputNumbers[index] = inputNumbers[index].slice(0, -1);;
-	if (inputNumbers[index] == '' || isNaN(inputNumbers[index]))
-		inputNumbers[index] = '0';
+	numberOnDisplay = numberOnDisplay.slice(0, -1);;
 
-	let result = parseFloat(inputNumbers[index]);
+	if (numberOnDisplay == '')
+		numberOnDisplay = '0';
 
-	display(result);
+	inputNumbers[index] = parseFloat(numberOnDisplay);
+
+	calcDisplay(numberOnDisplay);
 }
 
 function allClear() {
-	inputNumbers[0] = '0';
-	inputNumbers[1] = '0';
+	numberOnDisplay = '0';
+	product = 0;
+	inputNumbers[0] = 0;
+	inputNumbers[1] = 0;
 	operatorChoice = '';
 	index = 0;
 	finishedCalc = false;
-	display('0');
+	calcDisplay(numberOnDisplay);
 }
 
 function sound(src) {
@@ -131,5 +139,5 @@ btnStyle.forEach((button) => {
 		beep.play();
 	});
 })
-
+calcDisplay('0');
 btnEqual.addEventListener('click', operate);
