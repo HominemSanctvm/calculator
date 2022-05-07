@@ -3,6 +3,7 @@ const btnOperators = document.querySelectorAll('.btnOperators');
 const btnClear = document.getElementById('btnClear');
 const btnAllClear = document.getElementById('btnAllClear'); 
 const btnEqual = document.getElementById('btnEqual');
+const btnPercentage = document.getElementById('btnPercentage');
 const btnStyle = document.querySelectorAll('.btnStyle');
 let numberOnDisplay = '0';
 let inputNumbers = [0,0];
@@ -31,6 +32,15 @@ function calcMultiply(a, b) {
 
 function calcDivide(a, b) {
 	return a / b;
+}
+
+function calcPercentage() {
+	const a = inputNumbers[0];
+	const b = inputNumbers[1];
+	const result = (b / 100) * a;
+	inputNumbers[1] = parseFloat(result);
+	operate();
+
 }
 
 function passNumber(button) {
@@ -117,6 +127,8 @@ btnNumbers.forEach((button) => {
 		passNumber(button);
 	});
 })
+
+btnPercentage.addEventListener('click', calcPercentage);
 
 btnOperators.forEach((operator) => {
 	operator.addEventListener('click', function() {
