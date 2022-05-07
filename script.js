@@ -1,10 +1,12 @@
 const btnNumbers = document.querySelectorAll('.btnNumbers');
 const btnOperators = document.querySelectorAll('.btnOperators');
 const btnClear = document.getElementById('btnClear');
-const btnAllClear = document.getElementById('btnAllClear'); 
+const btnCancelEntry = document.getElementById('btnCancelEntry'); 
 const btnEqual = document.getElementById('btnEqual');
 const btnPercentage = document.getElementById('btnPercentage');
 const btnStyle = document.querySelectorAll('.btnStyle');
+const btnDot = document.getElementById('btnDot');
+let lockedDot = false;
 let numberOnDisplay = '0';
 let inputNumbers = [0,0];
 let product = 0; // 'result'
@@ -15,7 +17,11 @@ function calcDisplay(result) {
 	const outDisplayCalculator = document.getElementById('outDisplayCalculator');
 	const regex = new RegExp("^0+(?!$)",'g');
 	const display = result.replace(regex, '');
-	outDisplayCalculator.textContent = display;
+
+	if(result.length > 11)
+		outDisplayCalculator.textContent = 'E' + display;
+	else
+		outDisplayCalculator.textContent = display;
 }
 
 function calcSum(a,b) {
@@ -35,16 +41,27 @@ function calcDivide(a, b) {
 }
 
 function calcPercentage() {
-	const a = inputNumbers[0];
-	const b = inputNumbers[1];
-	const result = (b / 100) * a;
+	const a = parseFloat(inputNumbers[0]);
+	const b = parseFloat(inputNumbers[1]);
+	let result = parseFloat(b / 100);
+	switch (operatorChoice) {
+		case '+':
+			result = result * a;
+			break;
+		case '-':
+			result = result * a;
+			break;
+		default:
+			break;
+	}
+
 	inputNumbers[1] = parseFloat(result);
 	operate();
 
 }
 
 function passNumber(button) {
-	if (numberOnDisplay.length == 9) {
+	if (numberOnDisplay.length == 10) {
 		return;
 	}
 	const number = button.value;
@@ -60,6 +77,7 @@ function passOperator(operator) {
 	}
 	operatorChoice = operator.value;
 	numberOnDisplay = '0';
+	lockedDot = false;
 	
 	index = 1;
 }
@@ -92,27 +110,27 @@ function operate() {
 	numberOnDisplay = '0';
 	inputNumbers[0] = product; 
 	inputNumbers[1] = 0;
+	lockedDot = false;
 	index = 0;
 }
 
-function clear() {
-	numberOnDisplay = numberOnDisplay.slice(0, -1);;
-
-	if (numberOnDisplay == '')
-		numberOnDisplay = '0';
+function cancelEntry() {
+	numberOnDisplay = '0';
+	lockedDot = false;
 
 	inputNumbers[index] = parseFloat(numberOnDisplay);
 
 	calcDisplay(numberOnDisplay);
 }
 
-function allClear() {
+function clear() {
 	numberOnDisplay = '0';
 	product = 0;
 	inputNumbers[0] = 0;
 	inputNumbers[1] = 0;
 	operatorChoice = '';
 	index = 0;
+	lockedDot = false;
 	calcDisplay(numberOnDisplay);
 }
 
@@ -135,14 +153,26 @@ btnOperators.forEach((operator) => {
 	});
 })
 
-btnClear.addEventListener('click', clear);
+btnCancelEntry.addEventListener('click', cancelEntry);
 
-btnAllClear.addEventListener('click', allClear);
+btnClear.addEventListener('click', clear);
 
 btnStyle.forEach((button) => {
 	button.addEventListener('click', function() {
 		playBeep();	
 	});
 })
-calcDisplay(numberOnDisplay);
+
+btnDot.addEventListener('click', function() {
+	if (lockedDot)
+		return;
+	else {
+		passNumber(btnDot);
+		lockedDot = true;
+	}
+})
+
+
 btnEqual.addEventListener('click', operate);
+
+calcDisplay(numberOnDisplay);
