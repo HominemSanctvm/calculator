@@ -100,7 +100,6 @@ function allClear() {
 	inputNumbers[1] = 0;
 	operatorChoice = '';
 	index = 0;
-	finishedCalc = false;
 	calcDisplay(numberOnDisplay);
 }
 
