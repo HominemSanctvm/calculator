@@ -9,15 +9,11 @@ let inputNumbers = [0,0];
 let product = 0; // 'result'
 let index = 0;
 let operatorChoice = '';
-let finishedCalc = false;
 
 function calcDisplay(result) {
 	const outDisplayCalculator = document.getElementById('outDisplayCalculator');
 	const regex = new RegExp("^0+(?!$)",'g');
 	const display = result.replace(regex, '');
-//	let display = +result;
-//	display = display.toString();
-
 	outDisplayCalculator.textContent = display;
 }
 
@@ -38,10 +34,6 @@ function calcDivide(a, b) {
 }
 
 function passNumber(button) {
-	if (finishedCalc) {
-		finishedCalc = false;
-	}
-
 	const number = button.value;
 	numberOnDisplay += number;
 	inputNumbers[index] = parseFloat(numberOnDisplay);
@@ -49,9 +41,14 @@ function passNumber(button) {
 }
 
 function passOperator(operator) {
-		operatorChoice = operator.value;
-		numberOnDisplay = '';
-		index = 1;
+	if (index == 1) {
+		operate();
+	
+	}
+	operatorChoice = operator.value;
+	numberOnDisplay = '';
+	
+	index = 1;
 }
 
 function operate() {
@@ -80,10 +77,9 @@ function operate() {
 	calcDisplay(numberOnDisplay);
 
 	numberOnDisplay = '';
-	inputNumbers[0] = 0; 
+	inputNumbers[0] = product; 
 	inputNumbers[1] = 0;
 	index = 0;
-	finishedCalc = true;
 }
 
 function clear() {
