@@ -24,22 +24,6 @@ function calcDisplay(result) {
 		outDisplayCalculator.textContent = display;
 }
 
-function calcSum(a,b) {
-	return a + b;
-}
-
-function calcMinus(a,b) {
-	return a - b;
-}
-
-function calcMultiply(a, b) {
-	return a * b;
-}
-
-function calcDivide(a, b) {
-	return a / b;
-}
-
 function calcPercentage() {
 	const a = parseFloat(inputNumbers[0]);
 	const b = parseFloat(inputNumbers[1]);
@@ -88,16 +72,16 @@ function operate() {
 
 	switch (operatorChoice) {
 		case '+':
-			product = calcSum(a, b);
+			product = a + b;
 			break;
 		case '-':
-			product = calcMinus(a,b);
+			product = a - b;
 			break;
 		case '*':
-			product = calcMultiply(a,b);
+			product = a * b;
 			break;
 		case '/':
-			product = calcDivide(a,b);
+			product = a / b;
 			break;
 		default:
 			product = a;
