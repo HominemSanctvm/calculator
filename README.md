@@ -1,2 +1,3 @@
 # calculator
-The Odin Project assignment
+A simple javascript calculator.
+The Odin Project assignment.
